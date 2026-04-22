@@ -218,14 +218,8 @@ On startup, the following data is automatically inserted:
 
 ---
 
-## 👨‍💻 Author
+Done By:
+ Vishwas Puri / Syed Ayan Ali / Tanmay Tikko / Akhil jha 
+ - 2nd Year CS Students
+ - Spring Boot
 
-**Vishwas**
-- 2nd Year CS Student
-- Spring Boot
-
----
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
