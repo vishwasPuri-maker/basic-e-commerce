@@ -1,0 +1,50 @@
+package com.ecom.productcatalog.controller;
+
+
+import com.ecom.productcatalog.model.Order;
+import com.ecom.productcatalog.model.Product;
+import com.ecom.productcatalog.repository.OrderRepository;
+import com.ecom.productcatalog.repository.ProductRepository;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/orders")
+public class OrderController {
+
+    private final OrderRepository orderRepository;
+    private final ProductRepository productRepository;
+
+    public OrderController(OrderRepository orderRepository, ProductRepository productRepository) {
+        this.orderRepository = orderRepository;
+        this.productRepository = productRepository;
+    }
+    @PostMapping
+    public ResponseEntity<Order> placeOrder(@RequestBody OrderRequest request) {
+        Product product = productRepository.findById(request.getProductId())
+                .orElse(null);
+
+        if (product == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Order order = new Order();
+        order.setUserId(request.getUserId());
+        order.setProduct(product);
+        order.setStatus("PLACED");
+        order.setOrderDate(LocalDateTime.now());
+
+        Order saved = orderRepository.save(order);
+        return ResponseEntity.ok(saved);
+    }
+
+    // User ke saare orders dekho
+    @GetMapping("/user/{userId}")
+    public List<Order> getOrdersByUser(@PathVariable Long userId) {
+        return orderRepository.findByUserId(userId);
+    }
+}
