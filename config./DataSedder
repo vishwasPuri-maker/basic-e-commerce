@@ -1,0 +1,499 @@
+package com.ecom.productcatalog.config;
+
+import com.ecom.productcatalog.model.Category;
+import com.ecom.productcatalog.model.Product;
+import com.ecom.productcatalog.repository.CategoryRepository;
+import com.ecom.productcatalog.repository.ProductRepository;
+import com.ecom.productcatalog.repository.OrderRepository;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
+
+@Component
+public class DataSeeder implements CommandLineRunner {
+
+    private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
+    private final OrderRepository orderRepository;
+
+    public DataSeeder(ProductRepository productRepository, CategoryRepository categoryRepository ,OrderRepository orderRepository) {
+        this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
+        this.orderRepository = orderRepository;
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        // Clear all existing data
+        orderRepository.deleteAll();
+        productRepository.deleteAll();
+        categoryRepository.deleteAll();
+
+        // Create Categories
+        Category electronics = new Category();
+        electronics.setName("Electronics");
+
+        Category clothing = new Category();
+        clothing.setName("Clothing");
+
+        Category home = new Category();
+        home.setName("Home and Kitchen");
+
+        Category sports = new Category();
+        sports.setName("Sports and Fitness");
+
+        Category books = new Category();
+        books.setName("Books and Stationery");
+
+        Category shoes = new Category();
+        shoes.setName("Shoes and Footwear");
+
+        categoryRepository.saveAll(Arrays.asList(
+                electronics, clothing, home,
+                sports, books, shoes
+        ));
+
+        // Create Products
+
+// Electronics (10 products)
+        Product phone = new Product();
+        phone.setName("Samsung Galaxy S24");
+        phone.setDescription("Latest Samsung flagship with 200MP camera and AI features.");
+        phone.setImageUrl("https://images.unsplash.com/photo-1678911820864-e2c567c655d7?q=80&w=1744&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        phone.setPrice(699.99);
+        phone.setCategory(electronics);
+
+        Product laptop = new Product();
+        laptop.setName("Dell XPS 15");
+        laptop.setDescription("High-performance laptop with Intel i9 and 4K OLED display.");
+        laptop.setImageUrl("https://images.unsplash.com/photo-1567521463850-4939134bcd4a?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        laptop.setPrice(1299.99);
+        laptop.setCategory(electronics);
+
+        Product tablet = new Product();
+        tablet.setName("iPad Pro 12.9");
+        tablet.setDescription("Apple iPad Pro with M2 chip and stunning Liquid Retina display.");
+        tablet.setImageUrl("https://images.unsplash.com/photo-1662893170097-d6563d0093d3?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        tablet.setPrice(1099.99);
+        tablet.setCategory(electronics);
+
+        Product headphones = new Product();
+        headphones.setName("Sony WH-1000XM5");
+        headphones.setDescription("Industry-leading noise cancelling wireless headphones.");
+        headphones.setImageUrl("https://images.unsplash.com/photo-1755719401938-35c1b24f6d15?q=80&w=1642&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        headphones.setPrice(349.99);
+        headphones.setCategory(electronics);
+
+        Product smartwatch = new Product();
+        smartwatch.setName("Apple Watch Series 9");
+        smartwatch.setDescription("Advanced smartwatch with health tracking and Always-On display.");
+        smartwatch.setImageUrl("https://images.unsplash.com/photo-1579586337278-3befd40fd17a?q=80&w=1744&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        smartwatch.setPrice(399.99);
+        smartwatch.setCategory(electronics);
+
+        Product camera = new Product();
+        camera.setName("Canon EOS R50");
+        camera.setDescription("Mirrorless camera with 24.2MP sensor perfect for beginners.");
+        camera.setImageUrl("https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        camera.setPrice(679.99);
+        camera.setCategory(electronics);
+
+        Product monitor = new Product();
+        monitor.setName("LG UltraWide 34\"");
+        monitor.setDescription("34-inch curved UltraWide QHD monitor for immersive experience.");
+        monitor.setImageUrl("https://images.unsplash.com/photo-1634571799202-619a5d4c086e?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        monitor.setPrice(499.99);
+        monitor.setCategory(electronics);
+
+        Product speaker = new Product();
+        speaker.setName("JBL Charge 5");
+        speaker.setDescription("Portable waterproof Bluetooth speaker with 20 hours battery.");
+        speaker.setImageUrl("https://images.unsplash.com/photo-1558537348-c0f8e733989d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        speaker.setPrice(179.99);
+        speaker.setCategory(electronics);
+
+        Product keyboard = new Product();
+        keyboard.setName("Logitech MX Keys");
+        keyboard.setDescription("Advanced wireless keyboard with smart illumination and multi-device support.");
+        keyboard.setImageUrl("https://images.unsplash.com/photo-1623371748986-9a829391f7c9?q=80&w=2151&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        keyboard.setPrice(109.99);
+        keyboard.setCategory(electronics);
+
+        Product router = new Product();
+        router.setName("ASUS WiFi 6 Router");
+        router.setDescription("Next-gen WiFi 6 router with ultra-fast speed and wide coverage.");
+        router.setImageUrl("https://images.unsplash.com/photo-1606420187127-dae7c868fa7a?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        router.setPrice(189.99);
+        router.setCategory(electronics);
+
+// Clothing (10 products)
+        Product jacket = new Product();
+        jacket.setName("Winter Puffer Jacket");
+        jacket.setDescription("Warm and cozy puffer jacket perfect for cold winters.");
+        jacket.setImageUrl("https://images.unsplash.com/photo-1769689387681-42b8a41fa2de?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        jacket.setPrice(129.99);
+        jacket.setCategory(clothing);
+
+        Product tshirt = new Product();
+        tshirt.setName("Classic Cotton T-Shirt");
+        tshirt.setDescription("Soft 100% cotton t-shirt available in multiple colors.");
+        tshirt.setImageUrl("https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        tshirt.setPrice(24.99);
+        tshirt.setCategory(clothing);
+
+        Product jeans = new Product();
+        jeans.setName("Bootcut Fit Jeans");
+        jeans.setDescription("Comfortable BootCut jeans for everyday wear.");
+        jeans.setImageUrl("https://images.unsplash.com/photo-1732464517966-adb6ebdc2865?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        jeans.setPrice(59.99);
+        jeans.setCategory(clothing);
+
+        Product dress = new Product();
+        dress.setName("Floral Summer Dress");
+        dress.setDescription("Light and breezy floral dress ideal for summer outings.");
+        dress.setImageUrl("https://placehold.co/600x400");
+        dress.setPrice(49.99);
+        dress.setCategory(clothing);
+
+        Product hoodie = new Product();
+        hoodie.setName("Pullover Hoodie");
+        hoodie.setDescription("Cozy fleece hoodie with kangaroo pocket for casual wear.");
+        hoodie.setImageUrl("https://images.unsplash.com/photo-1638993029979-2fd6e7867660?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        hoodie.setPrice(44.99);
+        hoodie.setCategory(clothing);
+
+        Product chinos = new Product();
+        chinos.setName("Slim Chino Pants");
+        chinos.setDescription("Versatile slim-fit chinos suitable for casual and semi-formal occasions.");
+        chinos.setImageUrl("https://plus.unsplash.com/premium_photo-1690359582591-3b3ab6399885?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        chinos.setPrice(54.99);
+        chinos.setCategory(clothing);
+
+        Product blazer = new Product();
+        blazer.setName("Formal Blazer");
+        blazer.setDescription("Sharp and elegant blazer for office and formal events.");
+        blazer.setImageUrl("https://plus.unsplash.com/premium_photo-1690359582591-3b3ab6399885?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        blazer.setPrice(119.99);
+        blazer.setCategory(clothing);
+
+        Product kurta = new Product();
+        kurta.setName("Men's Ethnic Kurta");
+        kurta.setDescription("Stylish cotton kurta with traditional embroidery for festive wear.");
+        kurta.setImageUrl("https://images.unsplash.com/photo-1744551358303-46edae8b374b?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        kurta.setPrice(39.99);
+        kurta.setCategory(clothing);
+
+        Product shorts = new Product();
+        shorts.setName("Cargo Shorts");
+        shorts.setDescription("Durable multi-pocket cargo shorts great for outdoor activities.");
+        shorts.setImageUrl("https://placehold.co/600x400");
+        shorts.setPrice(34.99);
+        shorts.setCategory(clothing);
+
+        Product raincoat = new Product();
+        raincoat.setName("Waterproof Raincoat");
+        raincoat.setDescription("Lightweight waterproof raincoat with hood for rainy seasons.");
+        raincoat.setImageUrl("https://images.unsplash.com/photo-1611308725032-74f0a551d018?q=80&w=844&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        raincoat.setPrice(74.99);
+        raincoat.setCategory(clothing);
+
+// Home and Kitchen (10 products)
+        Product blender = new Product();
+        blender.setName("Ninja Pro Blender");
+        blender.setDescription("High-speed 1000W blender for smoothies, soups, and more.");
+        blender.setImageUrl("https://plus.unsplash.com/premium_photo-1718043036199-d98bef36af46?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        blender.setPrice(89.99);
+        blender.setCategory(home);
+
+        Product airfryer = new Product();
+        airfryer.setName("Philips Air Fryer XL");
+        airfryer.setDescription("6.2L capacity air fryer for healthy crispy cooking with less oil.");
+        airfryer.setImageUrl("https://images.unsplash.com/photo-1695089028114-ce28248f0ab9?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        airfryer.setPrice(149.99);
+        airfryer.setCategory(home);
+
+        Product coffeeMaker = new Product();
+        coffeeMaker.setName("Nespresso Coffee Maker");
+        coffeeMaker.setDescription("Compact espresso machine with 19-bar pressure for barista coffee at home.");
+        coffeeMaker.setImageUrl("https://images.unsplash.com/photo-1690435344878-fa83eed6400f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        coffeeMaker.setPrice(129.99);
+        coffeeMaker.setCategory(home);
+
+        Product vacuumCleaner = new Product();
+        vacuumCleaner.setName("Dyson V12 Vacuum");
+        vacuumCleaner.setDescription("Cordless stick vacuum with laser dust detection and powerful suction.");
+        vacuumCleaner.setImageUrl("https://placehold.co/600x400");
+        vacuumCleaner.setPrice(599.99);
+        vacuumCleaner.setCategory(home);
+
+        Product instantPot = new Product();
+        instantPot.setName("Instant Pot Duo 7-in-1");
+        instantPot.setDescription("Multi-use pressure cooker, slow cooker, rice cooker, and steamer.");
+        instantPot.setImageUrl("https://plus.unsplash.com/premium_photo-1763657199631-5c320e575c9a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        instantPot.setPrice(99.99);
+        instantPot.setCategory(home);
+
+        Product toaster = new Product();
+        toaster.setName("Breville Smart Toaster");
+        toaster.setDescription("4-slice toaster with LED display and multiple browning settings.");
+        toaster.setImageUrl("https://placehold.co/600x400");
+        toaster.setPrice(69.99);
+        toaster.setCategory(home);
+
+        Product knifeSet = new Product();
+        knifeSet.setName("Professional Knife Set");
+        knifeSet.setDescription("8-piece stainless steel chef knife set with wooden block stand.");
+        knifeSet.setImageUrl("https://plus.unsplash.com/premium_photo-1667238579781-cb4bd6126ffd?q=80&w=822&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        knifeSet.setPrice(79.99);
+        knifeSet.setCategory(home);
+
+        Product bedsheetSet = new Product();
+        bedsheetSet.setName("Egyptian Cotton Bedsheet Set");
+        bedsheetSet.setDescription("400 thread count luxury bedsheet set with 2 pillow covers.");
+        bedsheetSet.setImageUrl("https://placehold.co/600x400");
+        bedsheetSet.setPrice(59.99);
+        bedsheetSet.setCategory(home);
+
+        Product wallClock = new Product();
+        wallClock.setName("Minimalist Wall Clock");
+        wallClock.setDescription("Silent sweep movement wall clock with elegant wooden frame design.");
+        wallClock.setImageUrl("https://plus.unsplash.com/premium_photo-1744471321853-5a3a8378c1fa?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        wallClock.setPrice(34.99);
+        wallClock.setCategory(home);
+
+        Product ironBox = new Product();
+        ironBox.setName("Philips Steam Iron");
+        ironBox.setDescription("2400W steam iron with non-stick soleplate and anti-calc system.");
+        ironBox.setImageUrl("https://placehold.co/600x400");
+        ironBox.setPrice(44.99);
+        ironBox.setCategory(home);
+
+// Sports and Fitness (10 products)
+        Product dumbbells = new Product();
+        dumbbells.setName("Adjustable Dumbbell Set");
+        dumbbells.setDescription("5-50 lbs adjustable dumbbell set with quick-change mechanism.");
+        dumbbells.setImageUrl("https://images.unsplash.com/photo-1638536532686-d610adfc8e5c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        dumbbells.setPrice(299.99);
+        dumbbells.setCategory(sports);
+
+        Product yogaMat = new Product();
+        yogaMat.setName("Premium Yoga Mat");
+        yogaMat.setDescription("6mm thick non-slip eco-friendly yoga mat with carrying strap.");
+        yogaMat.setImageUrl("https://images.unsplash.com/photo-1646239646963-b0b9be56d6b5?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        yogaMat.setPrice(39.99);
+        yogaMat.setCategory(sports);
+
+        Product cyclingHelmet = new Product();
+        cyclingHelmet.setName("Road Cycling Helmet");
+        cyclingHelmet.setDescription("Lightweight aerodynamic helmet with 18 vents and adjustable fit.");
+        cyclingHelmet.setImageUrl("https://images.unsplash.com/photo-1601971360277-7b4c8aa60894?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        cyclingHelmet.setPrice(89.99);
+        cyclingHelmet.setCategory(sports);
+
+        Product jumpRope = new Product();
+        jumpRope.setName("Speed Jump Rope");
+        jumpRope.setDescription("Ball-bearing speed rope with adjustable cable for cardio training.");
+        jumpRope.setImageUrl("https://images.unsplash.com/photo-1651315283994-03ec73dc21f1?q=80&w=1325&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        jumpRope.setPrice(19.99);
+        jumpRope.setCategory(sports);
+
+        Product resistanceBands = new Product();
+        resistanceBands.setName("Resistance Band Set");
+        resistanceBands.setDescription("Set of 5 resistance bands with varying tension for full-body workouts.");
+        resistanceBands.setImageUrl("https://images.unsplash.com/photo-1584827386916-b5351d3ba34b?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        resistanceBands.setPrice(29.99);
+        resistanceBands.setCategory(sports);
+
+        Product proteinShaker = new Product();
+        proteinShaker.setName("BlenderBottle Shaker");
+        proteinShaker.setDescription("28oz leakproof protein shaker bottle with mixing ball.");
+        proteinShaker.setImageUrl("https://images.unsplash.com/photo-1590506231970-b268a0fde7b6?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        proteinShaker.setPrice(14.99);
+        proteinShaker.setCategory(sports);
+
+        Product footballBall = new Product();
+        footballBall.setName("Nike Premier Football");
+        footballBall.setDescription("Official size and weight football with durable textured casing.");
+        footballBall.setImageUrl("https://images.unsplash.com/photo-1486286701208-1d58e9338013?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        footballBall.setPrice(34.99);
+        footballBall.setCategory(sports);
+
+        Product treadmill = new Product();
+        treadmill.setName("Folding Treadmill");
+        treadmill.setDescription("Electric folding treadmill with 12 preset programs and LCD display.");
+        treadmill.setImageUrl("https://images.unsplash.com/photo-1721394749382-223a18ce8bb9?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        treadmill.setPrice(599.99);
+        treadmill.setCategory(sports);
+
+        Product swimmingGoggles = new Product();
+        swimmingGoggles.setName("Speedo Swimming Goggles");
+        swimmingGoggles.setDescription("Anti-fog UV protection swimming goggles with adjustable strap.");
+        swimmingGoggles.setImageUrl("https://placehold.co/600x400");
+        swimmingGoggles.setPrice(24.99);
+        swimmingGoggles.setCategory(sports);
+
+        Product kettlebell = new Product();
+        kettlebell.setName("Cast Iron Kettlebell 16kg");
+        kettlebell.setDescription("Solid cast iron kettlebell with smooth finish for swings and lifts.");
+        kettlebell.setImageUrl("https://images.unsplash.com/photo-1653647358769-c0465db60293?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        kettlebell.setPrice(49.99);
+        kettlebell.setCategory(sports);
+
+// Books and Stationery (10 products)
+        Product cleanCode = new Product();
+        cleanCode.setName("Clean Code by Robert Martin");
+        cleanCode.setDescription("A handbook of agile software craftsmanship for writing better code.");
+        cleanCode.setImageUrl("https://images.unsplash.com/photo-1599837487527-e009248aa71b?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        cleanCode.setPrice(39.99);
+        cleanCode.setCategory(books);
+
+        Product atomicHabits = new Product();
+        atomicHabits.setName("Atomic Habits by James Clear");
+        atomicHabits.setDescription("Proven framework for building good habits and breaking bad ones.");
+        atomicHabits.setImageUrl("https://images.unsplash.com/photo-1598301257942-e6bde1d2149b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        atomicHabits.setPrice(17.99);
+        atomicHabits.setCategory(books);
+
+        Product notebook = new Product();
+        notebook.setName("Leuchtturm1917 Notebook A5");
+        notebook.setDescription("Hardcover dotted notebook with 251 numbered pages and index.");
+        notebook.setImageUrl("https://images.unsplash.com/photo-1623697899811-f2403f50685e?q=80&w=806&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        notebook.setPrice(22.99);
+        notebook.setCategory(books);
+
+        Product penSet = new Product();
+        penSet.setName("Pilot G2 Gel Pen Set");
+        penSet.setDescription("Set of 12 smooth-writing retractable gel pens in assorted colors.");
+        penSet.setImageUrl("https://images.unsplash.com/photo-1634442490908-dc90210c8bce?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        penSet.setPrice(14.99);
+        penSet.setCategory(books);
+
+        Product richDadPoorDad = new Product();
+        richDadPoorDad.setName("Rich Dad Poor Dad");
+        richDadPoorDad.setDescription("Robert Kiyosaki's classic guide to financial independence and investing.");
+        richDadPoorDad.setImageUrl("https://placehold.co/600x400");
+        richDadPoorDad.setPrice(14.99);
+        richDadPoorDad.setCategory(books);
+
+        Product sketchbook = new Product();
+        sketchbook.setName("Artist Sketchbook A4");
+        sketchbook.setDescription("160-page spiral bound sketchbook with acid-free drawing paper.");
+        sketchbook.setImageUrl("https://plus.unsplash.com/premium_photo-1668013523212-6d675626371c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        sketchbook.setPrice(12.99);
+        sketchbook.setCategory(books);
+
+        Product stickyNotes = new Product();
+        stickyNotes.setName("Post-it Super Sticky Notes");
+        stickyNotes.setDescription("Pack of 6 pads with 90 sheets each in bright assorted colors.");
+        stickyNotes.setImageUrl("https://images.unsplash.com/photo-1591462391971-9ffc57b382b9?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        stickyNotes.setPrice(9.99);
+        stickyNotes.setCategory(books);
+
+        Product highlighterSet = new Product();
+        highlighterSet.setName("Zebra Mildliner Highlighters");
+        highlighterSet.setDescription("Set of 15 dual-tip pastel and bold highlighters for studying.");
+        highlighterSet.setImageUrl("https://images.unsplash.com/photo-1642440441537-97a32d0444ce?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        highlighterSet.setPrice(18.99);
+        highlighterSet.setCategory(books);
+
+        Product deskOrganizer = new Product();
+        deskOrganizer.setName("Bamboo Desk Organizer");
+        deskOrganizer.setDescription("6-compartment eco-friendly bamboo organizer for pens, scissors, and supplies.");
+        deskOrganizer.setImageUrl("https://images.unsplash.com/photo-1680182739027-f5eaa7711076?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        deskOrganizer.setPrice(29.99);
+        deskOrganizer.setCategory(books);
+
+        Product planner = new Product();
+        planner.setName("2025 Daily Planner");
+        planner.setDescription("Undated hardcover daily planner with goal tracker and habit log.");
+        planner.setImageUrl("https://images.unsplash.com/photo-1529651737248-dad5e287768e?q=80&w=930&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        planner.setPrice(19.99);
+        planner.setCategory(books);
+
+// Shoes and Footwear (10 products)
+        Product runningShoes = new Product();
+        runningShoes.setName("Nike Air Zoom Pegasus 40");
+        runningShoes.setDescription("Responsive cushioned running shoes with breathable mesh upper.");
+        runningShoes.setImageUrl("https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        runningShoes.setPrice(129.99);
+        runningShoes.setCategory(shoes);
+
+        Product casualSneakers = new Product();
+        casualSneakers.setName("Adidas Stan Smith Sneakers");
+        casualSneakers.setDescription("Iconic clean leather sneakers with perforated 3-Stripes detailing.");
+        casualSneakers.setImageUrl("https://images.unsplash.com/photo-1761972693261-57adf95011d6?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        casualSneakers.setPrice(89.99);
+        casualSneakers.setCategory(shoes);
+
+        Product formalShoes = new Product();
+        formalShoes.setName("Clarks Oxford Formal Shoes");
+        formalShoes.setDescription("Classic full-grain leather oxford shoes with cushioned footbed.");
+        formalShoes.setImageUrl("https://plus.unsplash.com/premium_photo-1664790560167-5160505f1596?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        formalShoes.setPrice(109.99);
+        formalShoes.setCategory(shoes);
+
+        Product sandals = new Product();
+        sandals.setName("Birkenstocks Arizona Sandals");
+        sandals.setDescription("Two-strap suede sandals with contoured cork-latex footbed for all-day comfort.");
+        sandals.setImageUrl("https://images.unsplash.com/photo-1603487742131-4160ec999306?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        sandals.setPrice(99.99);
+        sandals.setCategory(shoes);
+
+        Product boots = new Product();
+        boots.setName("Timberland 6-Inch Premium Boots");
+        boots.setDescription("Waterproof nubuck leather boots with rustproof hardware and lug sole.");
+        boots.setImageUrl("https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        boots.setPrice(199.99);
+        boots.setCategory(shoes);
+
+        Product slippers = new Product();
+        slippers.setName("Adidas Adilette Slides");
+        slippers.setDescription("Soft contoured footbed slides with quick-dry upper for pool and casual use.");
+        slippers.setImageUrl("https://images.unsplash.com/photo-1639401226901-362b0438d5b6?q=80&w=1337&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        slippers.setPrice(34.99);
+        slippers.setCategory(shoes);
+
+        Product basketballShoes = new Product();
+        basketballShoes.setName("Jordan Air 1 Mid");
+        basketballShoes.setDescription("Iconic high-top basketball shoes with Air-Sole unit for impact cushioning.");
+        basketballShoes.setImageUrl("https://images.unsplash.com/photo-1582229911941-ad25e99c9ead?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        basketballShoes.setPrice(119.99);
+        basketballShoes.setCategory(shoes);
+
+        Product hikingBoots = new Product();
+        hikingBoots.setName("Merrell Moab 3 Hiking Boots");
+        hikingBoots.setDescription("Waterproof trail boots with Vibram outsole and breathable mesh lining.");
+        hikingBoots.setImageUrl("https://images.unsplash.com/photo-1606036525923-525fa3b35465?q=80&w=1744&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        hikingBoots.setPrice(149.99);
+        hikingBoots.setCategory(shoes);
+
+        Product loafers = new Product();
+        loafers.setName("Leather Penny Loafers");
+        loafers.setDescription("Slip-on genuine leather loafers with rubber sole for smart-casual wear.");
+        loafers.setImageUrl("https://images.unsplash.com/photo-1616406432452-07bc5938759d?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        loafers.setPrice(79.99);
+        loafers.setCategory(shoes);
+
+        Product sportsShoes = new Product();
+        sportsShoes.setName("Puma Velocity Nitro 2");
+        sportsShoes.setDescription("Lightweight training shoes with NITRO foam midsole for superior energy return.");
+        sportsShoes.setImageUrl("https://images.unsplash.com/photo-1715001374698-dea6311634fe?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        sportsShoes.setPrice(109.99);
+        sportsShoes.setCategory(shoes);
+
+        productRepository.saveAll(Arrays.asList(
+                // Electronics
+                phone, laptop, tablet, headphones, smartwatch, camera, monitor, speaker, keyboard, router,
+                // Clothing
+                jacket, tshirt, jeans, dress, hoodie, chinos, blazer, kurta, shorts, raincoat,
+                // Home and Kitchen
+                blender, airfryer, coffeeMaker, vacuumCleaner, instantPot, toaster, knifeSet, bedsheetSet, wallClock, ironBox,
+                // Sports and Fitness
+                dumbbells, yogaMat, cyclingHelmet, jumpRope, resistanceBands, proteinShaker, footballBall, treadmill, swimmingGoggles, kettlebell,
+                // Books and Stationery
+                cleanCode, atomicHabits, notebook, penSet, richDadPoorDad, sketchbook, stickyNotes, highlighterSet, deskOrganizer, planner,
+                // Shoes and Footwear
+                runningShoes, casualSneakers, formalShoes, sandals, boots, slippers, basketballShoes, hikingBoots, loafers, sportsShoes
+        ));
+    }
