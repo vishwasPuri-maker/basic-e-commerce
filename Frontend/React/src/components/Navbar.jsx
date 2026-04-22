@@ -26,7 +26,7 @@ const Navbar = ({ onSearch }) => {
           fontFamily: 'Manrope', fontSize: '22px', fontWeight: 900,
           color: '#1c1b1b', textDecoration: 'none', letterSpacing: '-0.04em'
         }}>
-          SHOPIFY
+          E-Commerce Store
         </Link>
 
         {/* Nav Links */}
