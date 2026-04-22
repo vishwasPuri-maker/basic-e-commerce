@@ -1,27 +1,4 @@
-# basic-e-commerce
-
- Product Catalog — E-Commerce Backend
-
-A fully functional e-commerce REST API built with **Spring Boot**, **MySQL**, and **JWT Authentication**. This project includes product management, category filtering, order placement, and secure user authentication.
-
----
-
-##  Tech Stack
-
-| Technology | Usage |
-| Java 26 | Core Language |
-| Spring Boot 4.0.5 | Backend Framework |
-| Spring Security | Authentication & Authorization |
-| JWT (jjwt 0.11.5) | Token-based Auth |
-| Spring Data JPA | ORM / Database Layer |
-| Hibernate | JPA Implementation |
-| MySQL | Relational Database |
-| Lombok | Boilerplate Reduction |
-| Maven | Build Tool |
-
----
-
-Project Structure
+Note : Backend Project Structure (Spring Boot) Java 26 
 
 ```
 src/main/java/com/ecom/productcatalog/
@@ -57,7 +34,29 @@ src/main/java/com/ecom/productcatalog/
     └── ProductService.java      # Business logic layer
 ```
 
+
+
+# basic-e-commerce
+
+ Product Catalog — E-Commerce Backend
+
+A fully functional e-commerce REST API built with **Spring Boot**, **MySQL**, and **JWT Authentication**. This project includes product management, category filtering, order placement, and secure user authentication.
+
 ---
+
+##  Tech Stack
+
+| Technology | Usage |
+| Java 26 | Core Language |
+| Spring Boot 4.0.5 | Backend Framework |
+| Spring Security | Authentication & Authorization |
+| JWT (jjwt 0.11.5) | Token-based Auth |
+| Spring Data JPA | ORM / Database Layer |
+| Hibernate | JPA Implementation |
+| MySQL | Relational Database |
+| Lombok | Boilerplate Reduction |
+| Maven | Build Tool |
+
 
 ## ⚙️ Getting Started
 
