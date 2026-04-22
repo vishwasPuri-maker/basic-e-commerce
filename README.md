@@ -222,7 +222,7 @@ On startup, the following data is automatically inserted:
 
 **Vishwas**
 - 2nd Year CS Student
-- Built with ❤️ using Spring Boot
+- Spring Boot
 
 ---
 
